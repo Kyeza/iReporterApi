@@ -52,7 +52,7 @@ def get_red_flag(incident_id):
 
 @app.errorhandler(InvalidApiUsage)
 @app.route('/ireporter.com/api/v1/red-flags/<int:incident_id>', methods=['PATCH'])
-def update_red_flag(incident_id):
+def update_red_flag_comment(incident_id):
     red_flag = [red_flag for red_flag in db if red_flag['id'] == incident_id]
 
     if len(red_flag) == 0:
@@ -63,6 +63,23 @@ def update_red_flag(incident_id):
         raise InvalidApiUsage('bad request, must pass a comment')
 
     red_flag[0]['comment'] = request.json.get('comment', red_flag[0]['comment'])
+    result = {'status': 200, 'data': red_flag}
+    return jsonify(result)
+
+
+@app.errorhandler(InvalidApiUsage)
+@app.route('/ireporter.com/api/v1/red-flags/<int:incident_id>', methods=['PATCH'])
+def update_red_flag_location(incident_id):
+    red_flag = [red_flag for red_flag in db if red_flag['id'] == incident_id]
+
+    if len(red_flag) == 0:
+        raise InvalidApiUsage(f"resource not found, red-flag with id={incident_id} doesn't", status_code=404)
+    if not request.json:
+        raise InvalidApiUsage('bad request, not a valid red-flag')
+    if not 'comment' in request.json:
+        raise InvalidApiUsage('bad request, must pass location')
+
+    red_flag[0]['location'] = request.json.get('location', red_flag[0]['location'])
     result = {'status': 200, 'data': red_flag}
     return jsonify(result)
 
