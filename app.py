@@ -5,7 +5,7 @@ from models.entities import Incident
 app = Flask(__name__)
 
 @app.route('/ireporter.com/api/v1/resources/red-flags')
-def hello_world():
+def get_red_flags():
 	data = {
 	  	'createdOn' : 'Date',  
 	  	'createdBy' : 'Integer', 
