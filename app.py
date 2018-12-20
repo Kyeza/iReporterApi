@@ -24,7 +24,10 @@ for x in range(3):
 
 @app.route('/ireporter.com/api/v1/red-flags', methods=['GET'])
 def get_red_flags():
-    result = {'status': 200, 'data': db}
+    result = {
+        'status': 200, 
+        'data': db
+    }
     return jsonify(result), 200
 
 
@@ -34,9 +37,12 @@ def create_red_flags():
     if not request.json or not 'type' in request.json:
         raise InvalidApiUsage('Not a valid red-flag')
 
-    obj = Incident(**request.json)
-    db.append(obj.to_dict)
-    result = {'status': 201, 'data': obj.to_dict}
+    obj = Incident(**request.json).to_dict
+    db.append(obj)
+    result = {
+        'status': 201, 
+        'data': [{'id': obj['id'], 'message': 'Created red-flag record'}]
+    }
     return jsonify(result), 201
 
 
@@ -46,7 +52,10 @@ def get_red_flag(incident_id):
     red_flag = [red_flag for red_flag in db if red_flag['id'] == incident_id]
     if len(red_flag) == 0:
         raise InvalidApiUsage(f'resource not found, red-flag with id={incident_id} not fouund', status_code=404)
-    result = {'status': 200, 'data': red_flag}
+    result = {
+        'status': 200, 
+        'data': red_flag
+    }
     return jsonify(result), 200
 
 
@@ -63,7 +72,11 @@ def update_red_flag_comment(incident_id):
         raise InvalidApiUsage('bad request, must pass a comment')
 
     red_flag[0]['comment'] = request.json.get('comment', red_flag[0]['comment'])
-    result = {'status': 200, 'data': red_flag}
+    red_flag_obj = red_flag[0]
+    result = {
+        'status': 200, 
+        'data': [{'id': red_flag_obj['id'], 'message': 'Updated red-flag record’s comment'}]
+    }
     return jsonify(result)
 
 
@@ -80,7 +93,11 @@ def update_red_flag_location(incident_id):
         raise InvalidApiUsage('bad request, must pass location')
 
     red_flag[0]['location'] = request.json.get('location', red_flag[0]['location'])
-    result = {'status': 200, 'data': red_flag}
+    red_flag_obj = red_flag[0]
+    result = {
+        'status': 200, 
+        'data': [{'id': red_flag_obj['id'], 'message': 'Updated red-flag record’s location'}]
+    }
     return jsonify(result)
 
 
