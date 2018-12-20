@@ -13,19 +13,17 @@ class Incident(object):
         """initializer for Incident"""
         super().__init__()
 
-        # increment id on creation of a new instance
-        Incident.obj_id += 1
-
         #  defaults
         defaults = {
-            'createdOn' : None,  
-            'createdBy' : None, 
-            'type' : None,       
-            'location' : None,   
-            'status' : None,     
-            'Images' : None, 
-            'Videos' : None,
-            'comment' : None
+            'id': Incident.obj_id,
+            'createdOn': None,  
+            'createdBy': None, 
+            'type': None,       
+            'location': None,   
+            'status': None,     
+            'Images': None, 
+            'Videos': None,
+            'comment': None
         }
 
         try:
@@ -47,7 +45,10 @@ class Incident(object):
         self.videos = defaults['Videos']
         self.comment = defaults['comment']
 
-        self.incident = defaults
+        self.to_dict = defaults
+
+        # increment id on creation of a new instance
+        Incident.obj_id += 1
 
 
     @property
@@ -131,11 +132,11 @@ class Incident(object):
         self.__comment = value
 
     @property
-    def incident(self):
+    def to_dict(self):
         """getter for """
-        return self.__incident
+        return self.__to_dict
 
-    @incident.setter
-    def incident(self, value):
+    @to_dict.setter
+    def to_dict(self, value):
         """setter for """
-        self.__incident = value
+        self.__to_dict = value
