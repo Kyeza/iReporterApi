@@ -35,6 +35,9 @@ class Incident(object):
         except TypeError:
             pass
 
+
+        # defaults.update(kwargs)
+        
         # initializing instance variables
         self.created_on = defaults['createdOn']
         self.created_by = defaults['createdBy']
