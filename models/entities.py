@@ -1,136 +1,141 @@
+"""docstring for Entity module"""
+
+# pylint: disable=useless-object-inheritance
 class Incident(object):
-	"""docstring for Incident"""
+    """docstring for Incident"""
 
-	id = 0
+    # pylint: disable=too-many-instance-attributes
+    # 16 is reasonable in this case.
 
-	def __init__(self, **kwargs):
-		"""initializer for Incident"""
-		super().__init__()
+    obj_id = 0
 
-		# defaults
-		self.__createdon = None
-		self.__createdby = None
-		self.__type = None
-		self.__location = None
-		self.__status = None
-		self.__images = None
-		self.__videos = None
-		self.__comment = None
+    def __init__(self, **kwargs):
+        """initializer for Incident"""
+        super().__init__()
 
-		# initializing instance variables
-		self.created_on = kwargs['createdon']
-		self.created_by = kwargs['createdby']
-		self.type = kwargs['type']
-		self.location = kwargs['location']
-		self.status = kwargs['status']
-		self.images = kwargs['Images']
-		self.videos = kwargs['Videos']
-		self.comment = kwargs['comment']
+        # increment id on creation of a new instance
+        Incident.obj_id += 1
 
-	@property
-	def created_on(self):
-		"""
+        #  defaults
+        defaults = {
+            'createdOn' : None,  
+            'createdBy' : None, 
+            'type' : None,       
+            'location' : None,   
+            'status' : None,     
+            'Images' : None, 
+            'Videos' : None,
+            'comment' : None
+        }
 
-        :return:
-        """
-		return self.__created_on
+        try:
+            for k,w in kwargs.items():
+                if k in defaults:
+                    defaults[k] = w
+                else:
+                    raise TypeError(f'No such key({k})')
+        except TypeError:
+            pass
 
-	@created_on.setter
-	def created_on(self, value):
-		"""
+        # initializing instance variables
+        self.created_on = defaults['createdOn']
+        self.created_by = defaults['createdBy']
+        self.type = defaults['type']
+        self.location = defaults['location']
+        self.status = defaults['status']
+        self.images = defaults['Images']
+        self.videos = defaults['Videos']
+        self.comment = defaults['comment']
 
-        :return:
-        """
-		self.__created_on = value
-	
-	@property
-	def created_by(self):
-		"""
+        self.incident = defaults
 
-        :return:
-        """
-		return self.__created_by
 
-	@created_by.setter
-	def created_by(self, value):
-		"""
+    @property
+    def created_on(self):
+        """getter returns """
+        return self.__created_on
 
-        :return:
-        """
-		self.__created_by = value		
+    @created_on.setter
+    def created_on(self, value):
+        """setter for """
+        self.__created_on = value
 
-	@property
+    @property
+    def created_by(self):
+        """getter returns """
+        return self.__created_by
+
+    @created_by.setter
+    def created_by(self, value):
+        """setter for """
+        self.__created_by = value
+
+    @property
     def type(self):
-        """
-
-        :return:
-        """
+        """getter returns """
         return self.__type
 
     @type.setter
     def type(self, value):
-    	"""
-
-        :return:
-        """
+        """setter for """
         self.__type = value
 
     @property
     def location(self):
-        """
-
-        :return:
-        """
+        """getter returns """
         return self.__location
 
     @location.setter
     def location(self, value):
-        self.__loaction = value
+        """setter for """
+        self.__location = value
 
     @property
     def status(self):
-        """
-
-        :return:
-        """
+        """getter returns """
         return self.__status
 
     @status.setter
     def status(self, value):
+        """setter for """
         self.__status = value
 
     @property
     def images(self):
-        """
-
-        :return:
-        """
+        """getter returns """
         return self.__images
 
     @images.setter
     def images(self, value):
+        """setter for """
         self.__images = value
 
     @property
     def videos(self):
-        """
-
-        :return:
-        """
+        """getter returns """
         return self.__videos
 
     @videos.setter
     def videos(self, value):
+        """setter for """
         self.__videos = value
 
     @property
     def comment(self):
-        """
-
-        :return:
-        """
+        """getter returns """
         return self.__comment
 
     @comment.setter
     def comment(self, value):
+        """setter for """
         self.__comment = value
+
+    @property
+    def incident(self):
+        """getter for """
+        return self.__incident
+
+    @incident.setter
+    def incident(self, value):
+        """setter for """
+        self.__incident = value
