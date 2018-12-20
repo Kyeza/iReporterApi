@@ -13,19 +13,17 @@ class Incident(object):
         """initializer for Incident"""
         super().__init__()
 
-        # increment id on creation of a new instance
-        Incident.obj_id += 1
-
         #  defaults
         defaults = {
-            'createdOn' : None,  
-            'createdBy' : None, 
-            'type' : None,       
-            'location' : None,   
-            'status' : None,     
-            'Images' : None, 
-            'Videos' : None,
-            'comment' : None
+            'id': Incident.obj_id,
+            'createdOn': None,  
+            'createdBy': None, 
+            'type': None,       
+            'location': None,   
+            'status': None,     
+            'Images': None, 
+            'Videos': None,
+            'comment': None
         }
 
         try:
@@ -48,6 +46,9 @@ class Incident(object):
         self.comment = defaults['comment']
 
         self.incident = defaults
+
+        # increment id on creation of a new instance
+        Incident.obj_id += 1
 
 
     @property
