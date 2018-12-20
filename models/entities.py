@@ -45,7 +45,7 @@ class Incident(object):
         self.videos = defaults['Videos']
         self.comment = defaults['comment']
 
-        self.incident = defaults
+        self.to_dict = defaults
 
         # increment id on creation of a new instance
         Incident.obj_id += 1
@@ -132,11 +132,11 @@ class Incident(object):
         self.__comment = value
 
     @property
-    def incident(self):
+    def to_dict(self):
         """getter for """
-        return self.__incident
+        return self.__to_dict
 
-    @incident.setter
-    def incident(self, value):
+    @to_dict.setter
+    def to_dict(self, value):
         """setter for """
-        self.__incident = value
+        self.__to_dict = value
