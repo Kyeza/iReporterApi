@@ -102,7 +102,3 @@ def handle_invalid_usage(error):
     result = jsonify(error.to_dict())
     result.status_code = error.status_code
     return result
-
-
-if __name__ == '__main__':
-    APP.run(debug=True)
