@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Kyeza/iReporterApi.svg?branch=master)](https://travis-ci.com/Kyeza/iReporterApi) [![Coverage Status](https://coveralls.io/repos/github/Kyeza/iReporterApi/badge.svg?branch=develop)](https://coveralls.io/github/Kyeza/iReporterApi?branch=develop)
+[![Build Status](https://travis-ci.com/Kyeza/iReporterApi.svg?branch=master)](https://travis-ci.com/Kyeza/iReporterApi) [![Coverage Status](https://coveralls.io/repos/github/Kyeza/iReporterApi/badge.svg?branch=develop)](https://coveralls.io/github/Kyeza/iReporterApi?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/7a775bc8e1d7039f4171/maintainability)](https://codeclimate.com/github/Kyeza/iReporterApi/maintainability)
 
 # Introduction
 The Api creates, deletes, edits and returns red-flag incidents
