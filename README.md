@@ -1,3 +1,5 @@
+https://travis-ci.com/Kyeza/iReporterApi.svg?branch=master
+
 # Introduction
 The Api creates, deletes, edits and returns red-flag incidents
 
