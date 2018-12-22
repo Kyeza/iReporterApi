@@ -104,7 +104,7 @@ class TestIReporterApi(unittest.TestCase):
                                     data=json.dumps({'not_valid_key': 'red-flag'}),
                                     content_type='application/json')
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.json['error'], 'Not a valid red-flag')
+        self.assertEqual(response.json['error'], 'bad request, an invalid key was passed')
 
     def test_error_non_existent_red_flag(self):
         """test error for red-flag that doesnt exist"""
@@ -144,7 +144,3 @@ class TestIReporterApi(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json['error'],
                          f"resource not found, red-flag with id=3 doesn't exist")
-
-
-if __name__ == '__main__':
-    unittest.main()
