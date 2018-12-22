@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Kyeza/iReporterApi.svg?branch=master)](https://travis-ci.com/Kyeza/iReporterApi)
+[![Build Status](https://travis-ci.com/Kyeza/iReporterApi.svg?branch=master)](https://travis-ci.com/Kyeza/iReporterApi) [![Coverage Status](https://coveralls.io/repos/github/Kyeza/iReporterApi/badge.svg?branch=develop)](https://coveralls.io/github/Kyeza/iReporterApi?branch=develop)
 
 # Introduction
 The Api creates, deletes, edits and returns red-flag incidents

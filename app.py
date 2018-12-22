@@ -24,10 +24,17 @@ def create_red_flag():
     if not request.json or 'type' not in request.json:
         raise InvalidApiUsage('Not a valid red-flag')
 
-    obj = Incident(**request.json).to_dict
+    try:
+        try:
+            obj = Incident(**request.json).to_dict
+        except ValueError as e:
+            raise InvalidApiUsage('bad request, an invalid key was passed')
+    except InvalidApiUsage:
+        raise
+
     DATABASE.append(obj)
     result = {
-        'status': 201, 'data': [{'id': obj['id'], 'message': 'Created red-flag record'}]
+        'status': 201, 'data': [{'id': obj['id'], 'message':'Created red-flag record'}]
     }
     return jsonify(result), 201
 
@@ -52,7 +59,7 @@ def get_a_red_flag(incident_id):
 def update_red_flag(incident_id):
     """update location or comment of a specific red-flag using its id"""
     red_flag = [red_flag for red_flag in DATABASE if red_flag['id'] == incident_id]
-    result = {}
+    result = dict()
 
     if not red_flag:
         raise InvalidApiUsage(f"resource not found, red-flag with id={incident_id} doesn't exist",
