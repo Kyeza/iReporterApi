@@ -65,7 +65,7 @@ class TestIReporterApi(unittest.TestCase):
         self.assertDictEqual(response.json['data'][0], self.database[0])
 
     def test_update_red_flag(self):
-        """test for updattng location and comment of a red-flag"""
+        """test for updattng location of a red-flag"""
         response = self.client.patch('/ireporter.com/api/v1/red-flags/1',
                                      data=json.dumps({'location': 'New location'}),
                                      content_type='application/json')
@@ -73,6 +73,9 @@ class TestIReporterApi(unittest.TestCase):
         self.assertEqual(response.json['data'][0]['id'], 1)
         self.assertEqual(response.json['data'][0]['message'], 'Updated red-flag record’s location')
         self.assertEqual(self.database[0]['location'], 'New location')
+        
+    def test_update_red_flag(self):
+        """test for updattng comment of a red-flag"""
         response = self.client.patch('/ireporter.com/api/v1/red-flags/1',
                                      data=json.dumps({'comment': 'This is a new sample comment'}),
                                      content_type='application/json')
