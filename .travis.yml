@@ -8,6 +8,7 @@ before_install:
   
 script:
   - python -m unittest -v test_ireporter.py
+  - coverage run test_ireporter.py
 
 after_success:
-  - cover -test -report coveralls
+  - coveralls
