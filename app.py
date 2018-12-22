@@ -56,10 +56,7 @@ def get_a_red_flag(incident_id):
 @APP.route('/ireporter.com/api/v1/red-flags/<int:incident_id>', methods=['PATCH'])
 def update_red_flag(incident_id):
     """update location or comment of a specific red-flag using its id"""
-    red_flag = []
-    for item in DATABASE:
-        if item['id'] == incident_id:
-            red_flag.append(item)
+    red_flag = [item for item in DATABASE if item['id'] == incident_id]
             
     result = dict()
     if not red_flag:
