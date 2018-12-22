@@ -65,23 +65,21 @@ class TestIReporterApi(unittest.TestCase):
         self.assertDictEqual(response.json['data'][0], self.database[0])
 
     def test_update_red_flag(self):
-        """test for updattng location of a red-flag"""
-        response = self.client.patch('/ireporter.com/api/v1/red-flags/1',
+        """test for updattng location and comment of a red-flag"""
+        response_one = self.client.patch('/ireporter.com/api/v1/red-flags/1',
                                      data=json.dumps({'location': 'New location'}),
                                      content_type='application/json')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json['data'][0]['id'], 1)
-        self.assertEqual(response.json['data'][0]['message'], 'Updated red-flag record’s location')
-        self.assertEqual(self.database[0]['location'], 'New location')
-        
-    def test_update_red_flag(self):
-        """test for updattng comment of a red-flag"""
-        response = self.client.patch('/ireporter.com/api/v1/red-flags/1',
+        response_two = self.client.patch('/ireporter.com/api/v1/red-flags/1',
                                      data=json.dumps({'comment': 'This is a new sample comment'}),
                                      content_type='application/json')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json['data'][0]['id'], 1)
-        self.assertEqual(response.json['data'][0]['message'], 'Updated red-flag record’s comment')
+        self.assertEqual(response_one.status_code, 200)
+        self.assertEqual(response_one.json['data'][0]['id'], 1)
+        self.assertEqual(response_one.json['data'][0]['message'], 'Updated red-flag record’s location')
+        self.assertEqual(self.database[0]['location'], 'New location')
+        
+        self.assertEqual(response_two.status_code, 200)
+        self.assertEqual(response_two.json['data'][0]['id'], 1)
+        self.assertEqual(response_two.json['data'][0]['message'], 'Updated red-flag record’s comment')
         self.assertEqual(self.database[0]['comment'], 'This is a new sample comment')
 
     def test_delete_red_flag(self):
