@@ -59,7 +59,7 @@ def get_a_red_flag(incident_id):
 def update_red_flag(incident_id):
     """update location or comment of a specific red-flag using its id"""
     red_flag = [red_flag for red_flag in DATABASE if red_flag['id'] == incident_id]
-    result = {}
+    result = dict()
 
     if not red_flag:
         raise InvalidApiUsage(f"resource not found, red-flag with id={incident_id} doesn't exist",
