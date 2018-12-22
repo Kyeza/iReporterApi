@@ -1,13 +1,17 @@
 """docstring for Entity module"""
+from time import time
+from datetime import datetime
+
 
 # pylint: disable=useless-object-inheritance
+# pylint: disable=attribute-defined-outside-init
 class Incident(object):
     """docstring for Incident"""
 
     # pylint: disable=too-many-instance-attributes
     # 16 is reasonable in this case.
 
-    obj_id = 0
+    obj_id = 1
 
     def __init__(self, **kwargs):
         """initializer for Incident"""
@@ -16,28 +20,27 @@ class Incident(object):
         #  defaults
         defaults = {
             'id': Incident.obj_id,
-            'createdOn': None,  
-            'createdBy': None, 
-            'type': None,       
-            'location': None,   
-            'status': None,     
-            'Images': None, 
+            'createdOn': datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H:%M:%S'),
+            'createdBy': None,
+            'type': None,
+            'location': None,
+            'status': None,
+            'Images': None,
             'Videos': None,
             'comment': None
         }
 
         try:
-            for k,w in kwargs.items():
-                if k in defaults:
-                    defaults[k] = w
+            for key, value in kwargs.items():
+                if key in defaults:
+                    defaults[key] = value
                 else:
-                    raise TypeError(f'No such key({k})')
+                    raise TypeError(f'No such key({key})')
         except TypeError:
             pass
 
-
         # defaults.update(kwargs)
-        
+
         # initializing instance variables
         self.created_on = defaults['createdOn']
         self.created_by = defaults['createdBy']
@@ -52,7 +55,6 @@ class Incident(object):
 
         # increment id on creation of a new instance
         Incident.obj_id += 1
-
 
     @property
     def created_on(self):
