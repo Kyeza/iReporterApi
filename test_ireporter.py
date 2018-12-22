@@ -98,6 +98,14 @@ class TestIReporterApi(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json['error'], 'Not a valid red-flag')
 
+    def test_error_not_valid_key(self):
+        """test error for not valid incident"""
+        response = self.client.post('/ireporter.com/api/v1/red-flags',
+                                    data=json.dumps({'not_valid_key': 'red-flag'}),
+                                    content_type='application/json')
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json['error'], 'Not a valid red-flag')
+
     def test_error_non_existent_red_flag(self):
         """test error for red-flag that doesnt exist"""
         response = self.client.get('/ireporter.com/api/v1/red-flags/3')
