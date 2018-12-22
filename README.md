@@ -1,4 +1,4 @@
-h[![Build Status](https://travis-ci.com/Kyeza/iReporterApi.svg?branch=master)](https://travis-ci.com/Kyeza/iReporterApi)
+[![Build Status](https://travis-ci.com/Kyeza/iReporterApi.svg?branch=master)](https://travis-ci.com/Kyeza/iReporterApi)
 
 # Introduction
 The Api creates, deletes, edits and returns red-flag incidents
