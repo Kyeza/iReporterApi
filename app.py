@@ -24,13 +24,12 @@ def create_red_flag():
     if not request.json or 'type' not in request.json:
         raise InvalidApiUsage('Not a valid red-flag')
 
+    
     try:
-        try:
-            obj = Incident(**request.json).to_dict
-        except ValueError as e:
-            raise InvalidApiUsage('bad request, an invalid key was passed')
-    except InvalidApiUsage:
-        raise
+        obj = Incident(**request.json).to_dict
+    except ValueError as e:
+        raise InvalidApiUsage('bad request, an invalid key was passed')
+    
 
     DATABASE.append(obj)
     result = {
@@ -58,7 +57,7 @@ def get_a_red_flag(incident_id):
 @APP.route('/ireporter.com/api/v1/red-flags/<int:incident_id>', methods=['PATCH'])
 def update_red_flag(incident_id):
     """update location or comment of a specific red-flag using its id"""
-    red_flag = [red_flag for red_flag in DATABASE if red_flag['id'] == incident_id]
+    red_flag = [item for item in DATABASE if red_flag['id'] == incident_id]
     result = dict()
 
     if not red_flag:
